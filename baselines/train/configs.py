@@ -64,30 +64,29 @@ def get_experiment_config(args, default_config):
         # training
         "seed": args.seed,
         "rollout_fragment_length": 10,
-        "train_batch_size": 400,
-        "sgd_minibatch_size": 32,
+        "train_batch_size": 64000,
+        "sgd_minibatch_size": 6000,
         "disable_observation_precprocessing": True,
         "use_new_rl_modules": False,
         "use_new_learner_api": False,
         "framework": args.framework,
 
         # agent model
-        "fcnet_hidden": (4, 4),
-        "post_fcnet_hidden": (16,),
+        "fcnet_hidden": (32, 32),
+        "post_fcnet_hidden": (1024,),
         "cnn_activation": "relu",
         "fcnet_activation": "relu",
         "post_fcnet_activation": "relu",
         "use_lstm": True,
         "lstm_use_prev_action": True,
         "lstm_use_prev_reward": False,
-        "lstm_cell_size": 2,
+        "lstm_cell_size": 64,
         "shared_policy": False,
 
         # experiment trials
         "exp_name": args.exp,
         "stopping": {
-                    "timesteps_total": 100000,
-                    "training_iteration": 1,
+                    "timesteps_total": 10000000,
                     #"episode_reward_mean": 100,
         },
         "num_checkpoints": 5,
