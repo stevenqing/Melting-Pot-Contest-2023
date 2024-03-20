@@ -14,9 +14,10 @@
             "python": "/home/shuqingshi/miniconda3/envs/mpc_main/bin/python",
             "justMyCode": false,
             "args": [
-                "--local",
+                "--exp",
+                "coop_mining",
                 "--algo",
-                "a3c",
+                "ppo",
                 "--num_workers",
                 "1",
                 "--num_gpus",

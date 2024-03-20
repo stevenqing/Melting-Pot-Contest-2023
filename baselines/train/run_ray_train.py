@@ -56,7 +56,7 @@ def get_cli_args():
   parser.add_argument(
       "--exp",
       type=str,
-      choices = ['pd_arena','al_harvest','clean_up','territory_rooms'],
+      choices = ['pd_arena','al_harvest','clean_up','territory_rooms','coop_mining'],
       default="pd_arena",
       help="Name of the substrate to run",
   )
@@ -82,7 +82,7 @@ def get_cli_args():
   parser.add_argument(
         "--wandb",
         type=bool,
-        default=False,
+        default=True,
         help="Whether to use WanDB logging.",
   )
 
@@ -143,16 +143,16 @@ if __name__ == "__main__":
 
 
   # Setup WanDB 
-  if "WANDB_API_KEY" in os.environ and args.wandb:
-    wandb_project = f'{args.exp}_{args.framework}'
-    wandb_group = "meltingpot"
+  if args.wandb:
+    wandb_project = 'LLM_' + f'{args.exp}_{args.framework}'
+    wandb_group = "melting-pot"
 
     # Set up Weights And Biases logging if API key is set in environment variable.
     wdb_callbacks = [
         WandbLoggerCallback(
             project=wandb_project,
             group=wandb_group,
-            api_key=os.environ["WANDB_API_KEY"],
+            api_key='186456d6d9cac422aff22e29ff95e5f3869b60b9',
             log_config=True,
         )
     ]

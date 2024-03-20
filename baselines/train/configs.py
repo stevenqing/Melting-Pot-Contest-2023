@@ -29,18 +29,18 @@ IGNORE_KEYS = ['WORLD.RGB', 'INTERACTION_INVENTORIES', 'NUM_OTHERS_WHO_CLEANED_T
 
 
 def get_experiment_config(args, default_config):
-    
-    if args.exp == 'pd_arena':
-        substrate_name = "prisoners_dilemma_in_the_matrix__arena"
-    elif args.exp == 'al_harvest':
-        substrate_name = "allelopathic_harvest__open"
-    elif args.exp == 'clean_up':
-        substrate_name = "clean_up"
-    elif args.exp == 'territory_rooms':
-        substrate_name = "territory__rooms"
-    else:
-        raise Exception("Please set --exp to be one of ['pd_arena', 'al_harvest', 'clean_up', \
-                        'territory_rooms']. Other substrates are not supported.")
+    substrate_name = args.exp
+    # if args.exp == 'pd_arena':
+    #     substrate_name = "prisoners_dilemma_in_the_matrix__arena"
+    # elif args.exp == 'al_harvest':
+    #     substrate_name = "allelopathic_harvest__open"
+    # elif args.exp == 'clean_up':
+    #     substrate_name = "clean_up"
+    # elif args.exp == 'territory_rooms':
+    #     substrate_name = "territory__rooms"
+    # else:
+    #     raise Exception("Please set --exp to be one of ['pd_arena', 'al_harvest', 'clean_up', \
+    #                     'territory_rooms']. Other substrates are not supported.")
 
     # Fetch player roles
     player_roles = substrate.get_config(substrate_name).default_player_roles
@@ -86,7 +86,7 @@ def get_experiment_config(args, default_config):
         # experiment trials
         "exp_name": args.exp,
         "stopping": {
-                    #"timesteps_total": 1000000,
+                    "timesteps_total": 100000,
                     "training_iteration": 1,
                     #"episode_reward_mean": 100,
         },

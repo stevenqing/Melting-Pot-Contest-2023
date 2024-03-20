@@ -26,16 +26,22 @@ def downsample_observation(array: np.ndarray, scaled) -> np.ndarray:
             array, (array.shape[0]//scaled, array.shape[1]//scaled), interpolation=cv2.INTER_AREA)
     return frame
 
-def timestep_to_observations(timestep: dm_env.TimeStep) -> Mapping[str, Any]:
+def timestep_to_observations(timestep: dm_env.TimeStep, IF_IGNORE: bool=True) -> Mapping[str, Any]:
   """Extract observation from timestep structure returned from substrate."""
 
   gym_observations = {}
   for index, observation in enumerate(timestep.observation):
-    gym_observations[PLAYER_STR_FORMAT.format(index=index)] = {
+    if IF_IGNORE:
+      gym_observations[PLAYER_STR_FORMAT.format(index=index)] = {
         key: value
         for key, value in observation.items()
         if key not in _IGNORE_KEYS
-    }
+      }
+    else:
+      gym_observations[PLAYER_STR_FORMAT.format(index=index)] = {
+          key: value
+          for key, value in observation.items()
+      }
   return gym_observations
 
 

@@ -31,7 +31,7 @@ class MeltingPotEnv(multi_agent_env.MultiAgentEnv):
     # Melting Pot uses a tuple, so we convert them here
     self.observation_space = self._convert_spaces_tuple_to_dict(
         utils.spec_to_space(self._env.observation_spec()),
-        remove_world_observations=True)
+        remove_world_observations=False) # set remove_world_observations to True if you want to ignore global observations
     self.action_space = self._convert_spaces_tuple_to_dict(
         utils.spec_to_space(self._env.action_spec()))
     super().__init__()
@@ -39,7 +39,7 @@ class MeltingPotEnv(multi_agent_env.MultiAgentEnv):
   def reset(self, *args, **kwargs):
     """See base class."""
     timestep = self._env.reset()
-    return utils.timestep_to_observations(timestep), {}
+    return utils.timestep_to_observations(timestep, IF_IGNORE=False), {} # set IF_IGNORE to True if you want to ignore global observations
 
   def step(self, action_dict):
     """See base class."""
@@ -52,7 +52,7 @@ class MeltingPotEnv(multi_agent_env.MultiAgentEnv):
     done = {'__all__': timestep.last()}
     info = {}
 
-    observations = utils.timestep_to_observations(timestep)
+    observations = utils.timestep_to_observations(timestep, IF_IGNORE=False) # set IF_IGNORE to True if you want to ignore global observations
     return observations, rewards, done, done, info
 
   def close(self):
