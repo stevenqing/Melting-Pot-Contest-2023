@@ -22,13 +22,13 @@ def get_cli_args():
   parser.add_argument(
       "--num_workers",
       type=int,
-      default=2,
+      default=64,
       help="Number of workers to use for sample collection. Setting it zero will use same worker for collection and model training.",
   )
   parser.add_argument(
       "--num_gpus",
       type=int,
-      default=0,
+      default=1,
       help="Number of GPUs to run on (can be a fraction)",
   )
   parser.add_argument(
@@ -57,7 +57,7 @@ def get_cli_args():
       "--exp",
       type=str,
       choices = ['pd_arena','al_harvest','clean_up','territory_rooms','coop_mining'],
-      default="pd_arena",
+      default="coop_mining",
       help="Name of the substrate to run",
   )
   parser.add_argument(
