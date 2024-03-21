@@ -1,0 +1,51 @@
+// {
+//     // Use IntelliSense to learn about possible attributes.
+//     // Hover to view descriptions of existing attributes.
+//     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+//     "version": "0.2.0",
+//     "configurations": [
+
+//         {
+//             "name": "Python: main",
+//             "type": "python",
+//             "request": "launch",
+//             "program": "baselines/train/run_ray_train.py",
+//             "console": "integratedTerminal",
+//             "python": "/home/shuqingshi/miniconda3/envs/mpc_main/bin/python",
+//             "justMyCode": false,
+//             "args": [
+//                 "--exp",
+//                 "coop_mining",
+//                 "--algo",
+//                 "ppo",
+//                 "--num_workers",
+//                 "1",
+//                 "--num_gpus",
+//                 "0",
+//             ],
+//         },
+//     ]
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: main",
+            "type": "python",
+            "request": "launch",
+            "program": "baselines/evaluation/evaluate.py",
+            "console": "integratedTerminal",
+            "python": "/home/shuqingshi/miniconda3/envs/mpc_main/bin/python",
+            "justMyCode": false,
+            "args": [
+                "--config_dir",
+                "./baselines/evaluation/coop_mining/5-policy",
+                "--policies_dir",
+                "./baselines/evaluation/coop_mining/5-policy/checkpoint_000140/policies",
+            ],
+        },
+    ]
