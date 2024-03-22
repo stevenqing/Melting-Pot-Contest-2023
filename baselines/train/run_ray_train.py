@@ -57,7 +57,7 @@ def get_cli_args():
       "--exp",
       type=str,
       choices = ['pd_arena','al_harvest','clean_up','territory_rooms','coop_mining'],
-      default="coop_mining",
+      default="coop_mining_llm",
       help="Name of the substrate to run",
   )
   parser.add_argument(
